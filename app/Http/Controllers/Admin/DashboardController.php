@@ -6,6 +6,7 @@ use App\Models\SajagaReading;
 use App\Models\SinatraReading;
 use App\Models\NodeStatus;
 use App\Models\EventLog;
+use App\Models\SensorData;
 
 class DashboardController extends Controller {
     public function index() {
@@ -23,9 +24,16 @@ class DashboardController extends Controller {
 
         $activeAlerts = collect($sajagaNodes)->where('status', '!=', 'AMAN')->count();
 
+        // ESP32 sensor data
+        $latestSensor  = SensorData::latest()->first();
+        $sensorHistory = SensorData::orderBy('id','desc')->take(15)->get()->reverse()->values();
+        $statusMap     = [0=>'AMAN', 1=>'WASPADA', 2=>'BAHAYA', 3=>'SANGAT BAHAYA'];
+        $esp32Status   = $latestSensor ? ($statusMap[$latestSensor->status] ?? 'AMAN') : 'AMAN';
+
         return view('admin.overview', compact(
             'sajagaNodes', 'sinatraZones', 'nodeStatuses',
-            'recentEvents', 'overallStatus', 'activeAlerts'
+            'recentEvents', 'overallStatus', 'activeAlerts',
+            'latestSensor', 'sensorHistory', 'esp32Status'
         ));
     }
 }

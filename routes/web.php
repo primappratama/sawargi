@@ -7,9 +7,13 @@ use App\Http\Controllers\Admin\SinatraController;
 
 // ─── Public ───────────────────────────────────────────────
 Route::get('/', function () {
-    $sajagaNodes  = \App\Models\SajagaReading::getLatestPerNode();
-    $sinatraZones = \App\Models\SinatraReading::getLatestPerZone();
-    return view('public.index', compact('sajagaNodes', 'sinatraZones'));
+    $sajagaNodes   = \App\Models\SajagaReading::getLatestPerNode();
+    $sinatraZones  = \App\Models\SinatraReading::getLatestPerZone();
+    $latestSensor  = \App\Models\SensorData::latest()->first();
+    $sensorHistory = \App\Models\SensorData::orderBy('id','desc')->take(15)->get()->reverse()->values();
+    $statusMap     = [0=>'AMAN', 1=>'WASPADA', 2=>'BAHAYA', 3=>'SANGAT BAHAYA'];
+    $esp32Status   = $latestSensor ? ($statusMap[$latestSensor->status] ?? 'AMAN') : 'AMAN';
+    return view('public.index', compact('sajagaNodes','sinatraZones','latestSensor','sensorHistory','esp32Status'));
 })->name('public');
 
 // ─── Auth ─────────────────────────────────────────────────
