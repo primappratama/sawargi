@@ -23,11 +23,7 @@
         a { text-decoration: none; color: inherit; }
 
         /* NAV */
-        .nav {
-            position: fixed; inset: 0 0 auto; z-index: 200; height: 52px;
-            display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
-            transition: background .4s, backdrop-filter .4s;
-        }
+        .nav { position: fixed; inset: 0 0 auto; z-index: 200; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; transition: background .4s, backdrop-filter .4s; }
         .nav.solid { background: rgba(255,255,255,.85); backdrop-filter: saturate(180%) blur(20px); border-bottom: .5px solid rgba(0,0,0,.12); }
         .nav-brand { display: flex; align-items: center; gap: 9px; }
         .nav-logo  { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; overflow: hidden; }
@@ -40,16 +36,13 @@
         .nav:not(.solid) .nav-link:hover { color: #fff; background: rgba(255,255,255,.1); }
         .nav.solid .nav-link { color: var(--ink3); }
         .nav.solid .nav-link:hover { background: var(--bg); color: var(--ink); }
+        .nav-live { display: flex; align-items: center; gap: 6px; }
+        .nav-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; transition: opacity .3s; }
+        .nav-live-txt { font-size: 10px; color: rgba(255,255,255,.5); font-family: var(--mono); transition: color .3s; }
+        .nav.solid .nav-live-txt { color: var(--ink4); }
 
         /* HERO */
-        .hero {
-            height: 100svh; position: relative;
-            display: flex; flex-direction: column; justify-content: flex-end;
-            background-image:
-                linear-gradient(to bottom, rgba(0,0,0,.15) 0%, rgba(0,0,0,.05) 35%, rgba(0,0,0,.5) 70%, rgba(0,0,0,.82) 100%),
-                url('{{ asset('nagrakjaya.png') }}');
-            background-size: cover; background-position: center 40%; background-attachment: fixed;
-        }
+        .hero { height: 100svh; position: relative; display: flex; flex-direction: column; justify-content: flex-end; background-image: linear-gradient(to bottom, rgba(0,0,0,.15) 0%, rgba(0,0,0,.05) 35%, rgba(0,0,0,.5) 70%, rgba(0,0,0,.82) 100%), url('{{ asset('nagrakjaya.png') }}'); background-size: cover; background-position: center 40%; background-attachment: fixed; }
         .hero::after { content:''; position:absolute; inset:0; z-index:0; background:radial-gradient(ellipse 120% 100% at 50% 100%,rgba(0,0,0,.25),transparent 60%); pointer-events:none; }
         .hero-body { position:relative; z-index:1; max-width:1000px; margin:0; padding:0 60px 80px; }
 
@@ -82,7 +75,7 @@
         @keyframes rise { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
 
         /* ALERT BAR */
-        .alert-bar { position:sticky; top:52px; z-index:150; padding:12px 24px; display:flex; align-items:center; justify-content:center; gap:12px; }
+        .alert-bar { position:sticky; top:52px; z-index:150; padding:12px 24px; display:flex; align-items:center; justify-content:center; gap:12px; transition: background .5s; }
         .alert-bar.aman    { background:var(--safe); }
         .alert-bar.waspada { background:var(--warn); }
         .alert-bar.bahaya  { background:var(--danger); animation:dflash 1.5s ease-in-out infinite; }
@@ -91,6 +84,7 @@
         .ab-txt  { font-size:13px; font-weight:700; color:#fff; }
         .ab-link { margin-left:8px; font-size:12px; font-weight:600; color:rgba(255,255,255,.8); text-decoration:underline; text-underline-offset:2px; }
         .ab-link:hover { color:#fff; }
+        .ab-time { font-family:var(--mono); font-size:10px; color:rgba(255,255,255,.5); margin-left:auto; }
 
         /* REVEAL */
         .rv { opacity:0; transform:translateY(22px); transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1); }
@@ -109,11 +103,11 @@
         .sec-sub     { font-size:16px; color:var(--ink3); margin-top:10px; }
 
         /* STATUS BANNER */
-        .status-banner { border-radius:24px; padding:32px 36px; margin-bottom:20px; position:relative; overflow:hidden; box-shadow:0 4px 32px rgba(0,0,0,.06); }
+        .status-banner { border-radius:24px; padding:32px 36px; margin-bottom:20px; position:relative; overflow:hidden; box-shadow:0 4px 32px rgba(0,0,0,.06); transition: background .5s, border-color .5s; }
         .status-banner.aman    { background:linear-gradient(135deg,#f0fdf4,#dcfce7); border:1px solid var(--safe-bd); }
         .status-banner.waspada { background:linear-gradient(135deg,#fffbeb,#fef3c7); border:1px solid var(--warn-bd); }
         .status-banner.bahaya  { background:linear-gradient(135deg,#fff1f2,#ffe4e6); border:1px solid var(--danger-bd); }
-        .sb-ghost { position:absolute; right:28px; top:50%; transform:translateY(-50%); font-size:108px; font-weight:900; letter-spacing:-3px; opacity:.055; pointer-events:none; line-height:1; }
+        .sb-ghost { position:absolute; right:28px; top:50%; transform:translateY(-50%); font-size:108px; font-weight:900; letter-spacing:-3px; opacity:.055; pointer-events:none; line-height:1; transition: color .5s; }
         .aman    .sb-ghost { color:var(--safe); } .waspada .sb-ghost { color:var(--warn); } .bahaya .sb-ghost { color:var(--danger); }
         .sb-inner { display:flex; align-items:center; gap:22px; }
         .sb-ring  { width:60px; height:60px; border-radius:50%; display:grid; place-items:center; position:relative; flex-shrink:0; }
@@ -124,13 +118,13 @@
         .waspada .sb-ring::before,.waspada .sb-ring::after { border-color:var(--warn); }
         .bahaya  .sb-ring::before,.bahaya  .sb-ring::after { border-color:var(--danger); }
         @keyframes rp { to{transform:scale(2.3);opacity:0} }
-        .sb-core { width:22px; height:22px; border-radius:50%; z-index:1; }
+        .sb-core { width:22px; height:22px; border-radius:50%; z-index:1; transition: background .5s; }
         .aman    .sb-core { background:var(--safe);   box-shadow:0 0 14px rgba(5,150,105,.5); }
         .waspada .sb-core { background:var(--warn);   box-shadow:0 0 14px rgba(217,119,6,.5); }
         .bahaya  .sb-core { background:var(--danger); box-shadow:0 0 14px rgba(220,38,38,.5); }
         .sb-info  { flex:1; }
         .sb-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
-        .sb-val   { font-size:38px; font-weight:900; letter-spacing:-1.5px; line-height:1; margin-bottom:6px; }
+        .sb-val   { font-size:38px; font-weight:900; letter-spacing:-1.5px; line-height:1; margin-bottom:6px; transition: color .5s; }
         .sb-desc  { font-size:14px; line-height:1.55; }
         .aman    .sb-label,.aman    .sb-val { color:var(--safe); }
         .waspada .sb-label,.waspada .sb-val { color:var(--warn); }
@@ -146,7 +140,7 @@
         .node-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
         .nc { background:var(--white); border:1px solid var(--rule); border-radius:18px; padding:18px 20px; box-shadow:0 2px 12px rgba(0,0,0,.04); position:relative; overflow:hidden; transition:transform .22s,box-shadow .22s; }
         .nc:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.09); }
-        .nc::before { content:''; position:absolute; top:0; left:0; right:0; height:2.5px; }
+        .nc::before { content:''; position:absolute; top:0; left:0; right:0; height:2.5px; transition: background .5s; }
         .nc.aman::before    { background:var(--safe); }
         .nc.waspada::before { background:var(--warn); }
         .nc.bahaya::before  { background:var(--danger); }
@@ -157,10 +151,10 @@
         .nc-row  { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:.5px solid var(--rule); }
         .nc-row:last-child { border:none; padding-bottom:0; }
         .nc-lbl  { font-size:11px; color:var(--ink4); }
-        .nc-num  { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink2); }
+        .nc-num  { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink2); transition: color .3s; }
 
         /* BADGE */
-        .badge { display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:20px; font-size:9px; font-weight:700; border:1px solid; }
+        .badge { display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:20px; font-size:9px; font-weight:700; border:1px solid; transition: all .3s; }
         .bd    { width:4px; height:4px; border-radius:50%; }
         .b-aman    { color:var(--safe);   background:var(--safe-bg);   border-color:var(--safe-bd); }
         .b-waspada { color:var(--warn);   background:var(--warn-bg);   border-color:var(--warn-bd); }
@@ -172,7 +166,7 @@
         .metric-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px; }
         .metric-card { background:var(--white); border:1px solid var(--rule); border-radius:18px; padding:20px 16px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,.04); transition:transform .22s,box-shadow .22s; }
         .metric-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.09); }
-        .metric-val { font-size:30px; font-weight:800; letter-spacing:-1px; line-height:1; margin-bottom:6px; }
+        .metric-val { font-size:30px; font-weight:800; letter-spacing:-1px; line-height:1; margin-bottom:6px; transition: color .3s; }
         .metric-lbl { font-size:9px; color:var(--ink4); letter-spacing:1.5px; text-transform:uppercase; }
 
         /* IRIGASI */
@@ -190,7 +184,7 @@
         .g-bg   { fill:none; stroke:var(--bg); stroke-width:7; }
         .g-fill { fill:none; stroke-width:7; stroke-linecap:round; transition:stroke-dashoffset 1s ease; }
         .g-mid  { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-        .g-pct  { font-size:17px; font-weight:800; letter-spacing:-1px; }
+        .g-pct  { font-size:17px; font-weight:800; letter-spacing:-1px; transition: color .3s; }
         .g-lbl  { font-size:7px; color:var(--ink4); font-family:var(--mono); }
         .ir-stats { flex:1; display:flex; flex-direction:column; gap:8px; }
         .is-row { display:flex; justify-content:space-between; padding:7px 10px; background:var(--bg); border-radius:9px; }
@@ -230,179 +224,89 @@
         .fs-l    { font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--danger); margin-bottom:3px; }
         .fs-n    { font-size:26px; font-weight:900; color:var(--danger); }
 
-        /* ─── ULTRAWIDE 34"+ (≥2560px) ─── */
+        /* RESPONSIVE */
         @media(min-width: 2560px) {
-            .hero-body    { max-width: 900px; padding: 0 80px 100px; }
-            .hero-h       { font-size: 112px; letter-spacing: -5px; }
-            .hero-sub     { font-size: 20px; max-width: 560px; }
-            .hero-actions { margin-bottom: 72px; }
-            .btn-p,.btn-s { font-size: 16px; padding: 16px 32px; }
-            .hero-kpi     { padding: 26px 36px; }
-            .kpi-n        { font-size: 34px; }
-            .kpi-l        { font-size: 12px; }
-            .kpi          { padding: 0 32px; }
-            .loc-chip     { padding: 7px 18px; margin-bottom: 28px; }
-            .loc-txt      { font-size: 13px; }
-            .nav          { height: 64px; padding: 0 48px; }
-            .nav-name     { font-size: 17px; }
-            .nav-link     { font-size: 15px; padding: 8px 18px; }
-            .sec          { padding: 120px 0; }
-            .sec-in       { max-width: 1400px; padding: 0 80px; }
-            .sec-title    { font-size: 56px; }
-            .sec-sub      { font-size: 20px; }
-            .sec-eyebrow  { font-size: 13px; }
-            .node-row     { grid-template-columns: repeat(3,1fr); gap: 20px; }
-            .nc           { padding: 24px 26px; }
-            .nc-name      { font-size: 16px; }
-            .nc-lbl,.nc-num { font-size: 14px; }
-            .status-banner { padding: 40px 48px; }
-            .sb-val       { font-size: 52px; }
-            .sb-ghost     { font-size: 140px; }
-            .sb-ring      { width: 76px; height: 76px; }
-            .sb-core      { width: 28px; height: 28px; }
-            .ir-wrap      { gap: 24px; }
-            .ir-nm        { font-size: 18px; }
-            .pan-row      { gap: 20px; }
-            .pan          { padding: 32px 28px; }
-            .pan-title    { font-size: 26px; }
-            .metric-grid  { gap: 18px; }
-            .metric-val   { font-size: 38px; }
-            .footer       { padding: 56px 80px; }
-            .footer-in    { max-width: 1400px; }
-            .f-nm         { font-size: 18px; }
-            .fs-n         { font-size: 32px; }
-            .alert-bar    { padding: 16px 48px; }
-            .ab-txt       { font-size: 16px; }
+            .hero-body { max-width:900px; padding:0 80px 100px; }
+            .hero-h { font-size:112px; letter-spacing:-5px; }
+            .hero-sub { font-size:20px; max-width:560px; }
+            .btn-p,.btn-s { font-size:16px; padding:16px 32px; }
+            .hero-kpi { padding:26px 36px; }
+            .kpi-n { font-size:34px; } .kpi-l { font-size:12px; } .kpi { padding:0 32px; }
+            .nav { height:64px; padding:0 48px; } .nav-name { font-size:17px; } .nav-link { font-size:15px; padding:8px 18px; }
+            .sec { padding:120px 0; } .sec-in { max-width:1400px; padding:0 80px; }
+            .sec-title { font-size:56px; } .sec-sub { font-size:20px; }
+            .status-banner { padding:40px 48px; } .sb-val { font-size:52px; } .sb-ghost { font-size:140px; }
+            .metric-val { font-size:38px; } .footer { padding:56px 80px; } .footer-in { max-width:1400px; }
+            .alert-bar { padding:16px 48px; } .ab-txt { font-size:16px; }
         }
-
-        /* ─── LARGE DESKTOP 24" (1920px–2559px) ─── */
         @media(min-width: 1920px) and (max-width: 2559px) {
-            .hero-body    { max-width: 720px; padding: 0 64px 88px; }
-            .hero-h       { font-size: 65px; letter-spacing: -4px; }
-            .hero-sub     { font-size: 17px; max-width: 480px; }
-            .btn-p,.btn-s { font-size: 15px; padding: 14px 28px; }
-            .hero-kpi     { padding: 22px 30px; }
-            .kpi-n        { font-size: 30px; }
-            .kpi          { padding: 0 28px; }
-            .nav          { height: 58px; padding: 0 40px; }
-            .nav-name     { font-size: 15px; }
-            .nav-link     { font-size: 13px; }
-            .sec          { padding: 108px 0; }
-            .sec-in       { max-width: 1200px; padding: 0 60px; }
-            .sec-title    { font-size: 48px; }
-            .sb-val       { font-size: 44px; }
-            .metric-val   { font-size: 34px; }
+            .hero-body { max-width:720px; padding:0 64px 88px; }
+            .hero-h { font-size:65px; letter-spacing:-4px; }
+            .btn-p,.btn-s { font-size:15px; padding:14px 28px; }
+            .hero-kpi { padding:22px 30px; } .kpi-n { font-size:30px; } .kpi { padding:0 28px; }
+            .nav { height:58px; padding:0 40px; }
+            .sec { padding:108px 0; } .sec-in { max-width:1200px; padding:0 60px; }
+            .sec-title { font-size:48px; } .sb-val { font-size:44px; } .metric-val { font-size:34px; }
         }
-
-        /* ─── STANDARD DESKTOP (1280px–1919px) ─── */
-        /* default styles — tidak perlu override */
-
-        /* ─── SMALL LAPTOP (1024px–1279px) ─── */
         @media(max-width: 1279px) {
-            .hero-body    { max-width: 520px; padding: 0 48px 72px; }
-            .sec-in       { max-width: 900px; }
-            .kpi          { padding: 0 16px; }
-            .kpi-n        { font-size: 22px; }
+            .hero-body { max-width:520px; padding:0 48px 72px; }
+            .sec-in { max-width:900px; } .kpi { padding:0 16px; } .kpi-n { font-size:22px; }
         }
-
-        /* ─── TABLET LANDSCAPE (768px–1023px) ─── */
         @media(max-width: 1023px) {
-            .nav          { padding: 0 20px; }
-            .nav-links    { display: none; }
-            .hero-body    { max-width: 100%; padding: 0 32px 64px; }
-            .hero-h       { font-size: clamp(44px,6vw,72px); letter-spacing: -2px; }
-            .hero-kpi     { flex-wrap: wrap; gap: 0; }
-            .kpi          { flex: none; width: 50%; padding: 12px 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); }
-            .kpi:nth-child(odd)  { border-right: 1px solid rgba(255,255,255,.12); }
-            .kpi:nth-child(3),.kpi:nth-child(4) { border-bottom: none; }
-            .sec          { padding: 72px 0; }
-            .sec-in       { padding: 0 28px; }
-            .node-row     { grid-template-columns: repeat(2,1fr); }
-            .pan-row      { grid-template-columns: repeat(2,1fr); }
-            .metric-grid  { grid-template-columns: repeat(2,1fr); }
-            .ir-wrap      { grid-template-columns: 1fr; }
-            .footer-in    { flex-direction: column; align-items: flex-start; }
+            .nav { padding:0 20px; } .nav-links { display:none; }
+            .hero-body { max-width:100%; padding:0 32px 64px; }
+            .hero-h { font-size:clamp(44px,6vw,72px); letter-spacing:-2px; }
+            .hero-kpi { flex-wrap:wrap; gap:0; }
+            .kpi { flex:none; width:50%; padding:12px 20px; border-right:none; border-bottom:1px solid rgba(255,255,255,.12); }
+            .kpi:nth-child(odd) { border-right:1px solid rgba(255,255,255,.12); }
+            .kpi:nth-child(3),.kpi:nth-child(4) { border-bottom:none; }
+            .sec { padding:72px 0; } .sec-in { padding:0 28px; }
+            .node-row { grid-template-columns:repeat(2,1fr); }
+            .pan-row { grid-template-columns:repeat(2,1fr); }
+            .metric-grid { grid-template-columns:repeat(2,1fr); }
+            .ir-wrap { grid-template-columns:1fr; }
+            .footer-in { flex-direction:column; align-items:flex-start; }
         }
-
-        /* ─── TABLET PORTRAIT (600px–767px) ─── */
         @media(max-width: 767px) {
-            .hero-body    { padding: 0 24px 56px; }
-            .hero-h       { font-size: clamp(38px,7vw,56px); letter-spacing: -1.5px; }
-            .hero-sub     { font-size: 14px; }
-            .btn-p,.btn-s { font-size: 13px; padding: 11px 20px; }
-            .hero-actions { gap: 8px; margin-bottom: 40px; }
-            .hero-kpi     { padding: 16px 18px; }
-            .kpi-n        { font-size: 20px; }
-            .kpi-l        { font-size: 9px; }
-            .sec-title    { font-size: 32px; }
-            .sec-sub      { font-size: 14px; }
-            .status-banner { padding: 22px 24px; }
-            .sb-val       { font-size: 28px; }
-            .sb-ghost     { font-size: 80px; }
-            .node-row     { grid-template-columns: 1fr 1fr; gap: 10px; }
-            .pan-row      { grid-template-columns: 1fr 1fr; }
-            .metric-grid  { grid-template-columns: repeat(2,1fr); gap: 10px; }
-            .sec-in       { padding: 0 20px; }
-            .footer       { padding: 32px 20px; }
+            .hero-body { padding:0 24px 56px; }
+            .hero-h { font-size:clamp(38px,7vw,56px); letter-spacing:-1.5px; }
+            .hero-sub { font-size:14px; } .btn-p,.btn-s { font-size:13px; padding:11px 20px; }
+            .hero-actions { gap:8px; margin-bottom:40px; }
+            .hero-kpi { padding:16px 18px; } .kpi-n { font-size:20px; } .kpi-l { font-size:9px; }
+            .sec-title { font-size:32px; } .sec-sub { font-size:14px; }
+            .status-banner { padding:22px 24px; } .sb-val { font-size:28px; } .sb-ghost { font-size:80px; }
+            .node-row { grid-template-columns:1fr 1fr; gap:10px; }
+            .pan-row { grid-template-columns:1fr 1fr; }
+            .metric-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
+            .sec-in { padding:0 20px; } .footer { padding:32px 20px; }
         }
-
-        /* ─── MOBILE (≤599px) ─── */
         @media(max-width: 599px) {
-            .nav          { height: 48px; padding: 0 16px; }
-            .nav-links    { display: none; }
-            .hero         { background-attachment: scroll; } /* fix parallax di iOS */
-            .hero-body    { padding: 0 20px 48px; }
-            .hero-h       { font-size: clamp(34px,9vw,48px); letter-spacing: -1px; }
-            .hero-h .l2   { font-size: .28em; }
-            .hero-sub     { font-size: 13px; max-width: 100%; }
-            .btn-p,.btn-s { font-size: 13px; padding: 11px 18px; border-radius: 980px; }
-            .hero-actions { flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-            .hero-kpi     { padding: 14px 16px; border-radius: 14px; }
-            .kpi          { width: 50%; padding: 8px 12px; }
-            .kpi-n        { font-size: 18px; }
-            .kpi-l        { font-size: 8px; }
-            .alert-bar    { padding: 10px 16px; gap: 8px; }
-            .ab-txt       { font-size: 11px; }
-            .ab-link      { display: none; }
-            .sec          { padding: 56px 0; }
-            .sec-in       { padding: 0 16px; }
-            .sec-title    { font-size: 26px; letter-spacing: -.5px; }
-            .sec-sub      { font-size: 13px; }
-            .sec-hd       { margin-bottom: 32px; }
-            .status-banner { padding: 18px 20px; border-radius: 16px; }
-            .sb-ring      { width: 44px; height: 44px; }
-            .sb-core      { width: 16px; height: 16px; }
-            .sb-val       { font-size: 24px; }
-            .sb-ghost     { font-size: 64px; right: 16px; }
-            .sb-desc      { font-size: 12px; }
-            .sb-badge     { display: none; }
-            .node-row     { grid-template-columns: 1fr; gap: 10px; }
-            .nc           { padding: 14px 16px; border-radius: 14px; }
-            .nc-name      { font-size: 12px; }
-            .nc-lbl,.nc-num { font-size: 10px; }
-            .ir-wrap      { grid-template-columns: 1fr; }
-            .ir-body      { padding: 16px 18px; }
-            .ir-nm        { font-size: 14px; }
-            .pan-row      { grid-template-columns: 1fr; gap: 12px; }
-            .pan          { padding: 20px 18px; }
-            .pan-title    { font-size: 18px; }
-            .metric-grid  { grid-template-columns: repeat(2,1fr); gap: 10px; }
-            .metric-card  { padding: 16px 12px; border-radius: 14px; }
-            .metric-val   { font-size: 24px; }
-            .metric-lbl   { font-size: 8px; }
-            .footer       { padding: 28px 16px; }
-            .footer-in    { flex-direction: column; gap: 16px; }
-            .f-sos        { width: 100%; }
-            .fs-n         { font-size: 22px; }
-            .scroll-arrow { display: none; }
+            .nav { height:48px; padding:0 16px; } .nav-links { display:none; }
+            .hero { background-attachment:scroll; }
+            .hero-body { padding:0 20px 48px; }
+            .hero-h { font-size:clamp(34px,9vw,48px); letter-spacing:-1px; } .hero-h .l2 { font-size:.28em; }
+            .hero-sub { font-size:13px; max-width:100%; }
+            .btn-p,.btn-s { font-size:13px; padding:11px 18px; }
+            .hero-actions { flex-wrap:wrap; gap:8px; margin-bottom:32px; }
+            .hero-kpi { padding:14px 16px; border-radius:14px; }
+            .kpi { width:50%; padding:8px 12px; } .kpi-n { font-size:18px; } .kpi-l { font-size:8px; }
+            .alert-bar { padding:10px 16px; gap:8px; } .ab-txt { font-size:11px; } .ab-link,.ab-time { display:none; }
+            .sec { padding:56px 0; } .sec-in { padding:0 16px; }
+            .sec-title { font-size:26px; } .sec-sub { font-size:13px; } .sec-hd { margin-bottom:32px; }
+            .status-banner { padding:18px 20px; border-radius:16px; }
+            .sb-ring { width:44px; height:44px; } .sb-core { width:16px; height:16px; }
+            .sb-val { font-size:24px; } .sb-ghost { font-size:64px; right:16px; } .sb-desc { font-size:12px; } .sb-badge { display:none; }
+            .node-row { grid-template-columns:1fr; gap:10px; }
+            .nc { padding:14px 16px; border-radius:14px; } .nc-name { font-size:12px; } .nc-lbl,.nc-num { font-size:10px; }
+            .ir-wrap { grid-template-columns:1fr; } .ir-body { padding:16px 18px; } .ir-nm { font-size:14px; }
+            .pan-row { grid-template-columns:1fr; gap:12px; } .pan { padding:20px 18px; } .pan-title { font-size:18px; }
+            .metric-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
+            .metric-card { padding:16px 12px; border-radius:14px; } .metric-val { font-size:24px; } .metric-lbl { font-size:8px; }
+            .footer { padding:28px 16px; } .footer-in { flex-direction:column; gap:16px; }
+            .f-sos { width:100%; } .fs-n { font-size:22px; } .scroll-arrow { display:none; }
         }
-
-        /* ─── MOBILE KECIL (≤380px) ─── */
         @media(max-width: 380px) {
-            .hero-h    { font-size: 30px; }
-            .btn-s     { display: none; } /* sembunyiin ghost button biar ga crowded */
-            .kpi       { width: 50%; }
-            .sec-title { font-size: 22px; }
+            .hero-h { font-size:30px; } .btn-s { display:none; } .sec-title { font-size:22px; }
         }
     </style>
 </head>
@@ -421,6 +325,10 @@
         <a href="#sensor"  class="nav-link">Sensor</a>
         <a href="#irigasi" class="nav-link">Irigasi</a>
         <a href="#panduan" class="nav-link">Panduan</a>
+    </div>
+    <div class="nav-live">
+        <div class="nav-live-dot" id="live-dot"></div>
+        <span class="nav-live-txt" id="last-update">Live</span>
     </div>
 </nav>
 
@@ -469,7 +377,7 @@
                 <div class="kpi-l">Tiang Sensor TX</div>
             </div>
             <div class="kpi">
-                <div class="kpi-n" style="color:{{ $sColor }}">{{ $overall }}</div>
+                <div class="kpi-n" id="kpi-overall" style="color:{{ $sColor }}">{{ $overall }}</div>
                 <div class="kpi-l">Status Kini</div>
             </div>
         </div>
@@ -488,10 +396,11 @@
         'BAHAYA'  => '🚨 BAHAYA — Parameter kritis! Segera hubungi BPBD',
     ];
 @endphp
-<div class="alert-bar {{ strtolower($overall) }}">
-    <div class="ab-dot"></div>
-    <span class="ab-txt">{{ $alertMsg[$overall] }}</span>
+<div class="alert-bar {{ strtolower($overall) }}" id="alertBar">
+    <div class="ab-dot" id="ab-dot"></div>
+    <span class="ab-txt" id="ab-txt">{{ $alertMsg[$overall] }}</span>
     <a href="#status" class="ab-link">Lihat detail →</a>
+    <span class="ab-time" id="ab-time"></span>
 </div>
 
 {{-- STATUS --}}
@@ -500,7 +409,7 @@
         <div class="sec-hd rv">
             <div class="sec-eyebrow">Monitoring Realtime</div>
             <div class="sec-title">Status <em>Saat Ini</em></div>
-            <div class="sec-sub">Data diperbarui otomatis dari tiang sensor setiap beberapa menit</div>
+            <div class="sec-sub">Data diperbarui otomatis setiap 5 detik</div>
         </div>
         @php
             $desc = [
@@ -509,31 +418,33 @@
                 'BAHAYA'  => 'Parameter kritis terlampaui! Segera lakukan evakuasi ke titik kumpul.',
             ];
         @endphp
-        <div class="status-banner {{ strtolower($overall) }} rv d1">
-            <div class="sb-ghost">{{ $overall }}</div>
+        <div class="status-banner {{ strtolower($overall) }} rv on d1" id="mainStatusBanner">
+            <div class="sb-ghost" id="sb-ghost">{{ $overall }}</div>
             <div class="sb-inner">
                 <div class="sb-ring"><div class="sb-core"></div></div>
                 <div class="sb-info">
                     <div class="sb-label">Status Keseluruhan Sistem</div>
-                    <div class="sb-val">{{ $overall }}</div>
-                    <div class="sb-desc">{{ $desc[$overall] }}</div>
+                    <div class="sb-val" id="sb-val">{{ $overall }}</div>
+                    <div class="sb-desc" id="sb-desc">{{ $desc[$overall] }}</div>
                 </div>
                 <div class="sb-badge">
                     <div class="sb-badge-dot" style="background:currentColor"></div>
-                    {{ $overall }}
+                    <span id="sb-badge-txt">{{ $overall }}</span>
                 </div>
             </div>
         </div>
+
         <div class="node-row">
             @forelse($sajagaNodes as $node)
-            <div class="nc {{ strtolower($node->status) }} rv d{{ $loop->index+1 }}">
+            <div class="nc {{ strtolower($node->status) }} rv on d{{ $loop->index+1 }}" id="node-{{ $node->node_id }}">
                 <div class="nc-head">
                     <div>
                         <div class="nc-id">{{ $node->node_id }}</div>
                         <div class="nc-name">{{ $node->node_name }}</div>
                     </div>
-                    <span class="badge b-{{ strtolower($node->status) }}">
-                        <span class="bd" style="background:currentColor"></span>{{ $node->status }}
+                    <span class="badge b-{{ strtolower($node->status) }}" id="badge-{{ $node->node_id }}">
+                        <span class="bd" style="background:currentColor"></span>
+                        <span>{{ $node->status }}</span>
                     </span>
                 </div>
                 <div class="nc-vals">
@@ -543,7 +454,7 @@
                 </div>
             </div>
             @empty
-            <div class="nc rv" style="grid-column:1/-1;text-align:center;padding:32px;color:var(--ink4)">Menunggu data sensor...</div>
+            <div class="nc rv on" style="grid-column:1/-1;text-align:center;padding:32px;color:var(--ink4)">Menunggu data sensor...</div>
             @endforelse
         </div>
     </div>
@@ -561,28 +472,27 @@
         @if($latestSensor)
         @php
             $espClass = match($esp32Status) {
-                'WASPADA'       => 'waspada',
-                'BAHAYA','SANGAT BAHAYA' => 'bahaya',
-                default         => 'aman'
+                'WASPADA'                        => 'waspada',
+                'BAHAYA', 'SANGAT BAHAYA'        => 'bahaya',
+                default                          => 'aman'
             };
             $rain     = $latestSensor->rainfall;
             $rainInfo = match(true) {
-                $rain == 0  => ['CERAH',       '#0ea5e9', '#e0f2fe'],
-                $rain <= 5  => ['HUJAN RINGAN', '#3b82f6', '#dbeafe'],
-                $rain <= 20 => ['HUJAN SEDANG', '#2563eb', '#bfdbfe'],
-                default     => ['HUJAN LEBAT',  '#1d4ed8', '#93c5fd'],
+                $rain == 0  => ['CERAH',        '#0ea5e9', '#e0f2fe'],
+                $rain <= 5  => ['HUJAN RINGAN',  '#3b82f6', '#dbeafe'],
+                $rain <= 20 => ['HUJAN SEDANG',  '#2563eb', '#bfdbfe'],
+                default     => ['HUJAN LEBAT',   '#1d4ed8', '#93c5fd'],
             };
         @endphp
 
-        {{-- Status Banner ESP32 --}}
-        <div class="status-banner {{ $espClass }} rv d1">
+        <div class="status-banner {{ $espClass }} rv on d1" id="esp32Banner">
             <div class="sb-ghost">ESP32</div>
             <div class="sb-inner">
                 <div class="sb-ring"><div class="sb-core"></div></div>
                 <div class="sb-info">
                     <div class="sb-label">Status Sensor ESP32</div>
-                    <div class="sb-val">{{ $esp32Status }}</div>
-                    <div class="sb-desc">Update terakhir: {{ $latestSensor->created_at->diffForHumans() }}</div>
+                    <div class="sb-val" id="esp-status-val">{{ $esp32Status }}</div>
+                    <div class="sb-desc" id="esp-upd">Update terakhir: {{ $latestSensor->created_at->diffForHumans() }}</div>
                 </div>
                 <div class="sb-badge">
                     <div class="sb-badge-dot" style="background:currentColor"></div>
@@ -591,41 +501,38 @@
             </div>
         </div>
 
-        {{-- 4 Metric Cards --}}
         <div class="metric-grid">
-            <div class="metric-card rv d1" style="border-top:3px solid #e74c3c">
-                <div class="metric-val" style="color:#e74c3c">{{ number_format($latestSensor->gyro_x,1) }}<span style="font-size:14px">°</span></div>
+            <div class="metric-card rv on d1" style="border-top:3px solid #e74c3c">
+                <div class="metric-val" id="esp-roll" style="color:#e74c3c">{{ number_format($latestSensor->gyro_x,1) }}<span style="font-size:14px">°</span></div>
                 <div class="metric-lbl">Roll (X)</div>
             </div>
-            <div class="metric-card rv d2" style="border-top:3px solid #2ecc71">
-                <div class="metric-val" style="color:#2ecc71">{{ number_format($latestSensor->gyro_y,1) }}<span style="font-size:14px">°</span></div>
+            <div class="metric-card rv on d2" style="border-top:3px solid #2ecc71">
+                <div class="metric-val" id="esp-pitch" style="color:#2ecc71">{{ number_format($latestSensor->gyro_y,1) }}<span style="font-size:14px">°</span></div>
                 <div class="metric-lbl">Pitch (Y)</div>
             </div>
-            <div class="metric-card rv d3" style="border-top:3px solid var(--water)">
-                <div class="metric-val" style="color:var(--water)">{{ $latestSensor->soil_moisture }}<span style="font-size:14px">%</span></div>
+            <div class="metric-card rv on d3" style="border-top:3px solid var(--water)">
+                <div class="metric-val" id="esp-soil" style="color:var(--water)">{{ $latestSensor->soil_moisture }}<span style="font-size:14px">%</span></div>
                 <div class="metric-lbl">Kelembaban Tanah</div>
             </div>
-            <div class="metric-card rv d4" style="border-top:3px solid #e67e22">
-                <div class="metric-val" style="color:#e67e22">{{ number_format($latestSensor->suhu,1) }}<span style="font-size:14px">°C</span></div>
+            <div class="metric-card rv on d4" style="border-top:3px solid #e67e22">
+                <div class="metric-val" id="esp-suhu" style="color:#e67e22">{{ number_format($latestSensor->suhu,1) }}<span style="font-size:14px">°C</span></div>
                 <div class="metric-lbl">Suhu Lingkungan</div>
             </div>
         </div>
 
-        {{-- Curah Hujan --}}
-        <div class="nc rv d2" style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;margin-bottom:16px">
+        <div class="nc rv on d2" style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;margin-bottom:16px">
             <div>
                 <div style="font-size:10px;color:var(--ink4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Curah Hujan (BMKG Sukabumi)</div>
                 <div style="font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--ink)">
-                    {{ $rain }} <span style="font-size:14px;font-weight:400;color:var(--ink4)">mm</span>
+                    <span id="esp-rain">{{ $rain }}</span> <span style="font-size:14px;font-weight:400;color:var(--ink4)">mm</span>
                 </div>
             </div>
-            <span style="padding:8px 18px;border-radius:20px;font-size:12px;font-weight:700;color:{{ $rainInfo[1] }};background:{{ $rainInfo[2] }}">
+            <span id="esp-rain-label" style="padding:8px 18px;border-radius:20px;font-size:12px;font-weight:700;color:{{ $rainInfo[1] }};background:{{ $rainInfo[2] }}">
                 {{ $rainInfo[0] }}
             </span>
         </div>
 
-        {{-- Chart --}}
-        <div class="nc rv d3" style="padding:22px 24px">
+        <div class="nc rv on d3" style="padding:22px 24px">
             <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink4);margin-bottom:16px">
                 Grafik Pergeseran — 15 Data Terakhir
             </div>
@@ -635,7 +542,7 @@
         </div>
 
         @else
-        <div class="nc rv" style="text-align:center;padding:48px;color:var(--ink4)">
+        <div class="nc rv on" style="text-align:center;padding:48px;color:var(--ink4)">
             <div style="font-size:32px;margin-bottom:8px">📡</div>
             <div style="font-weight:600">Menunggu data dari sensor ESP32...</div>
             <div style="font-size:12px;margin-top:4px">Pastikan perangkat sudah terhubung ke jaringan</div>
@@ -655,7 +562,7 @@
         <div class="ir-wrap">
             @forelse($sinatraZones as $zone)
             @php $r=40; $circ=2*M_PI*$r; $off=$circ-($zone->level_pct/100)*$circ; $gc=$zone->valve_open?'var(--water)':'var(--ink4)'; @endphp
-            <div class="ir-card rv d{{ $loop->index+1 }}">
+            <div class="ir-card rv on d{{ $loop->index+1 }}">
                 <div class="ir-top-bar"></div>
                 <div class="ir-body">
                     <div class="ir-head">
@@ -672,23 +579,23 @@
                         <div class="g-wrap">
                             <svg class="g-svg" width="90" height="90" viewBox="0 0 90 90">
                                 <circle class="g-bg" cx="45" cy="45" r="{{ $r }}"/>
-                                <circle class="g-fill" cx="45" cy="45" r="{{ $r }}" stroke="{{ $gc }}" stroke-dasharray="{{ $circ }}" stroke-dashoffset="{{ $off }}"/>
+                                <circle class="g-fill" id="gauge-fill-{{ $zone->zone_id }}" cx="45" cy="45" r="{{ $r }}" stroke="{{ $gc }}" stroke-dasharray="{{ $circ }}" stroke-dashoffset="{{ $off }}"/>
                             </svg>
                             <div class="g-mid">
-                                <div class="g-pct" style="color:{{ $gc }}">{{ $zone->level_pct }}%</div>
+                                <div class="g-pct" id="gauge-pct-{{ $zone->zone_id }}" style="color:{{ $gc }}">{{ $zone->level_pct }}%</div>
                                 <div class="g-lbl">LEVEL</div>
                             </div>
                         </div>
                         <div class="ir-stats">
                             <div class="is-row"><span class="is-l">ADC Raw</span><span class="is-v">{{ $zone->adc_raw }}</span></div>
                             <div class="is-row"><span class="is-l">Katup</span><span class="is-v">{{ $zone->valve_open?'Terbuka':'Tertutup' }}</span></div>
-                            <div class="is-row"><span class="is-l">Update</span><span class="is-v" style="font-size:10px">{{ $zone->created_at->diffForHumans() }}</span></div>
+                            <div class="is-row"><span class="is-l">Update</span><span class="is-v" id="zone-upd-{{ $zone->zone_id }}" style="font-size:10px">{{ $zone->created_at->diffForHumans() }}</span></div>
                         </div>
                     </div>
                 </div>
             </div>
             @empty
-            <div class="ir-card rv" style="grid-column:1/-1;text-align:center;padding:36px;color:var(--ink4)">Menunggu data...</div>
+            <div class="ir-card rv on" style="grid-column:1/-1;text-align:center;padding:36px;color:var(--ink4)">Menunggu data...</div>
             @endforelse
         </div>
     </div>
@@ -714,7 +621,7 @@
                     ['Kemiringan > 2.0°','Hujan > 70 mm','Kelembaban > 80%'],
                     ['SEGERA evakuasi ke titik kumpul','Hubungi BPBD: 119 / 112','Jangan kembali tanpa izin']],
             ] as $i=>[$st,$lbl,$num,$ico,$clr,$crits,$acts])
-            <div class="pan {{ $st }} rv d{{ $i+1 }}">
+            <div class="pan {{ $st }} rv on d{{ $i+1 }}">
                 <div class="pan-stripe"></div>
                 <div class="pan-ghost">{{ $num }}</div>
                 <div class="pan-icon">
@@ -788,7 +695,7 @@ document.querySelectorAll('.counter').forEach(el => co.observe(el));
 @if(isset($sensorHistory) && $sensorHistory->count() > 0)
 const pubCtx = document.getElementById('pubGyroChart');
 if(pubCtx) {
-    new Chart(pubCtx.getContext('2d'), {
+    window.pubChart = new Chart(pubCtx.getContext('2d'), {
         type: 'line',
         data: {
             labels: {!! $sensorHistory->map(fn($d) => $d->created_at->format('H:i:s'))->toJson() !!},
@@ -809,8 +716,162 @@ if(pubCtx) {
 }
 @endif
 
-// Auto reload 30 detik
-setTimeout(() => location.reload(), 30000);
+// ═══════════════════════════════════════════
+// REALTIME POLLING
+// ═══════════════════════════════════════════
+const COLORS = {
+    AMAN:           { cls:'aman',    kpi:'#34d399' },
+    WASPADA:        { cls:'waspada', kpi:'#fbbf24' },
+    BAHAYA:         { cls:'bahaya',  kpi:'#f87171' },
+    'SANGAT BAHAYA':{ cls:'bahaya',  kpi:'#f87171' },
+};
+
+const ALERT_MSGS = {
+    AMAN:    '✓ Semua sistem normal — tidak ada ancaman terdeteksi',
+    WASPADA: '⚠ Waspada — satu atau lebih parameter mendekati batas kritis',
+    BAHAYA:  '🚨 BAHAYA — Parameter kritis! Segera hubungi BPBD',
+};
+
+const STATUS_DESC = {
+    AMAN:    'Semua parameter dalam batas normal. Tidak ada ancaman yang terdeteksi.',
+    WASPADA: 'Satu atau lebih sensor mendekati batas kritis. Harap tingkatkan kewaspadaan.',
+    BAHAYA:  'Parameter kritis terlampaui! Segera lakukan evakuasi ke titik kumpul.',
+};
+
+const RAIN_LABELS = [
+    [0,   'CERAH',        '#0ea5e9', '#e0f2fe'],
+    [5,   'HUJAN RINGAN', '#3b82f6', '#dbeafe'],
+    [20,  'HUJAN SEDANG', '#2563eb', '#bfdbfe'],
+    [999, 'HUJAN LEBAT',  '#1d4ed8', '#93c5fd'],
+];
+
+function $id(id) { return document.getElementById(id); }
+function setText(id, val) { const el = $id(id); if(el) el.textContent = val; }
+
+function updateAlertBar(overall) {
+    const bar = $id('alertBar');
+    if(!bar) return;
+    bar.className = 'alert-bar ' + (COLORS[overall]?.cls || 'aman');
+    setText('ab-txt', ALERT_MSGS[overall] || ALERT_MSGS.AMAN);
+}
+
+function updateMainBanner(overall) {
+    const banner = $id('mainStatusBanner');
+    if(!banner) return;
+    banner.className = 'status-banner ' + (COLORS[overall]?.cls || 'aman') + ' rv on d1';
+    setText('sb-val',       overall);
+    setText('sb-ghost',     overall);
+    setText('sb-badge-txt', overall);
+    setText('sb-desc',      STATUS_DESC[overall] || STATUS_DESC.AMAN);
+}
+
+function updateKpi(overall) {
+    const el = $id('kpi-overall');
+    if(!el) return;
+    el.textContent = overall;
+    el.style.color = COLORS[overall]?.kpi || '#34d399';
+}
+
+function updateNodeCards(sajaga) {
+    sajaga.forEach(node => {
+        const card = $id('node-' + node.node_id);
+        if(!card) return;
+        const cls = node.status.toLowerCase();
+        card.className = `nc ${cls} rv on`;
+        const badge = $id('badge-' + node.node_id);
+        if(badge) {
+            badge.className = 'badge b-' + cls;
+            const span = badge.querySelector('span:last-child');
+            if(span) span.textContent = node.status;
+        }
+        const nums = card.querySelectorAll('.nc-num');
+        if(nums[0]) nums[0].textContent = parseFloat(node.tilt_angle).toFixed(2) + '°';
+        if(nums[1]) nums[1].textContent = node.rainfall + ' mm';
+        if(nums[2]) nums[2].textContent = node.soil_moist + '%';
+    });
+}
+
+function updateSinatra(sinatra) {
+    const R = 40, CIRC = 2 * Math.PI * R;
+    sinatra.forEach(zone => {
+        const fill = $id('gauge-fill-' + zone.zone_id);
+        const pct  = $id('gauge-pct-'  + zone.zone_id);
+        const upd  = $id('zone-upd-'   + zone.zone_id);
+        if(fill) fill.style.strokeDashoffset = CIRC - (zone.level_pct / 100) * CIRC;
+        if(pct)  pct.textContent = zone.level_pct + '%';
+        if(upd)  upd.textContent = zone.updated;
+    });
+}
+
+function updateEsp32(esp32) {
+    if(!esp32) return;
+    const espBanner = $id('esp32Banner');
+    if(espBanner) {
+        const cls = COLORS[esp32.status]?.cls || 'aman';
+        espBanner.className = `status-banner ${cls} rv on d1`;
+        setText('esp-status-val', esp32.status);
+    }
+    setText('esp-upd',   'Update terakhir: ' + esp32.updated);
+
+    // Metric values — preserve the unit spans
+    const setMetric = (id, val) => {
+        const el = $id(id);
+        if(!el) return;
+        // Ambil span unit kalau ada
+        const span = el.querySelector('span');
+        el.textContent = val;
+        if(span) el.appendChild(span);
+    };
+    setMetric('esp-roll',  parseFloat(esp32.gyro_x).toFixed(1));
+    setMetric('esp-pitch', parseFloat(esp32.gyro_y).toFixed(1));
+    setMetric('esp-soil',  esp32.soil_moisture);
+    setMetric('esp-suhu',  parseFloat(esp32.suhu).toFixed(1));
+    setText('esp-rain', esp32.rainfall);
+
+    // Rain label
+    const r  = parseFloat(esp32.rainfall);
+    const rl = RAIN_LABELS.find(([max]) => r <= max) || RAIN_LABELS[3];
+    const rainEl = $id('esp-rain-label');
+    if(rainEl) {
+        rainEl.textContent   = rl[1];
+        rainEl.style.color   = rl[2];
+        rainEl.style.background = rl[3];
+    }
+}
+
+function pulseLiveDot() {
+    const dot = $id('live-dot');
+    if(!dot) return;
+    dot.style.opacity = '0.2';
+    setTimeout(() => dot.style.opacity = '1', 400);
+}
+
+async function pollRealtime() {
+    try {
+        const res  = await fetch('/api/realtime/status?t=' + Date.now());
+        if(!res.ok) return;
+        const data = await res.json();
+
+        updateAlertBar(data.overall);
+        updateMainBanner(data.overall);
+        updateKpi(data.overall);
+        updateNodeCards(data.sajaga);
+        updateSinatra(data.sinatra);
+        updateEsp32(data.esp32);
+        pulseLiveDot();
+
+        // Timestamp di navbar & alert bar
+        setText('last-update', data.timestamp);
+        setText('ab-time', '⟳ ' + data.timestamp);
+
+    } catch(e) {
+        console.warn('Poll error:', e);
+    }
+}
+
+// Mulai polling
+pollRealtime();
+setInterval(pollRealtime, 5000);
 </script>
 </body>
 </html>
